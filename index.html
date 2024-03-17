@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Table Project</title>
+    <!-- Bootstrap CSS -->
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Sample Table</h2>
+        <!-- Table -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Username</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Rows will be added here -->
+            </tbody>
+        </table>
+        
+        <!-- Form -->
+        <h2>Add New Row</h2>
+        <form id="addRowForm">
+            <input type="text" id="firstName" placeholder="First Name" required class="form-control mb-2">
+            <input type="text" id="lastName" placeholder="Last Name" required class="form-control mb-2">
+            <input type="text" id="username" placeholder="Username" required class="form-control mb-2">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- JavaScript for Adding Rows to Table -->
+    <script>
+        document.getElementById('addRowForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from submitting the traditional way
+            
+            const tableBody = document.getElementById('tableBody');
+            const rowCount = tableBody.rows.length;
+            
+            // Get form values
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const username = document.getElementById('username').value;
+            
+            // Create a new row and cells
+            const row = tableBody.insertRow();
+            const cell1 = row.insertCell(0);
+            const cell2 = row.insertCell(1);
+            const cell3 = row.insertCell(2);
+            const cell4 = row.insertCell(3);
+            
+            // Fill cells with values
+            cell1.innerHTML = rowCount + 1;
+            cell2.innerHTML = firstName;
+            cell3.innerHTML = lastName;
+            cell4.innerHTML = username;
+            
+            // Clear form fields
+            document.getElementById('addRowForm').reset();
+        });
+    </script>
+</body>
+</html>
